@@ -11,7 +11,7 @@
     "start": "grunt webpack"
   },
   "keywords": [],
-  "author": "Tiny Technologies Inc.",
+  "author": "Krzysztof Stec",
   "devDependencies": {
     "@ephox/agar": "latest",
     "@ephox/bedrock": "latest",
