@@ -1,5 +1,3 @@
-export default class Column {
-    constructor(private editor) {
+import BaseElement from './BaseElement';
 
-    }
-}
+export default class Column extends BaseElement {}

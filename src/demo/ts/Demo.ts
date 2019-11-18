@@ -6,6 +6,6 @@ Plugin();
 
 tinymce.init({
     selector: 'textarea.tinymce',
-    plugins: 'code tinymce-plugin-grid',
-    toolbar: 'tinymce-plugin-grid'
+    plugins: 'code grid',
+    toolbar: 'grid',
 });

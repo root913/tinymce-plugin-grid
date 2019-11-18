@@ -5,10 +5,8 @@
 .cache
 /lib
 /dist
-/scratch
 node_modules
 /config/repl
 /*.log
 ephox-*.tgz
-package-lock.json
 jenkins-plumbing

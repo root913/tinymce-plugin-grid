@@ -1,5 +1,3 @@
-export default class Row {
-    constructor(private editor) {
+import BaseElement from './BaseElement';
 
-    }
-}
+export default class Row extends BaseElement {}
