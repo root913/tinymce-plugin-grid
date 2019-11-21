@@ -2,7 +2,7 @@ import { KeyboardEvent } from '@ephox/dom-globals';
 
 export default class Noneditable {
     private classNames = [
-        'edito-col'
+        'grid-col'
     ];
 
     constructor(private editor) {
@@ -13,7 +13,6 @@ export default class Noneditable {
     private onKeyDown(event: KeyboardEvent) {
         const keycode = event.charCode || event.keyCode;
         if (keycode === 8) {
-            console.log(this.editor);
             if (this.editor.selection.getRng().startOffset === 0) {
                 this.classNames.forEach((name) => {
                     if (this.editor.selection.getNode().classList.contains(`.${name}`)) {

@@ -1,4 +1,4 @@
-﻿tinyMCE.addI18n('en', {
+﻿tinymce.addI18n('en', {
     'grid.insert' : 'Wstaw grid',
     'grid.remove_all' : 'Usuń grid',
 

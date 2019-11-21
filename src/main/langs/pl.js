@@ -1,4 +1,4 @@
-﻿tinyMCE.addI18n('pl', {
+﻿tinymce.addI18n('pl', {
     'grid.insert' : 'Wstaw grid',
     'grid.remove_all' : 'Usuń grid',
 
@@ -12,3 +12,4 @@
     'grid.column.insert_before' : 'Wstaw kolumnę po',
     'grid.column.remove' : 'Usuń kolumnę',
 });
+console.log('test');

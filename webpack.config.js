@@ -38,6 +38,10 @@ module.exports = {
                 to: 'index.html'
             },
             {
+                from: './src/demo/html/langs',
+                to: 'langs'
+            },
+            {
                 from: './src/main/style.css',
                 to: 'plugins/grid/style.css'
             },

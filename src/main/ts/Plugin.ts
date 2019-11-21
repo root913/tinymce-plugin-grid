@@ -15,6 +15,6 @@ const setup = (editor, url) => {
 };
 
 export default () => {
-    tinymce.PluginManager.requireLangPack('grid');
     tinymce.PluginManager.add('grid', setup);
+    tinymce.PluginManager.requireLangPack('grid');
 };
