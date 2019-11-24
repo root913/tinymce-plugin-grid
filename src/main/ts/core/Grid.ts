@@ -1,14 +1,16 @@
 import {Editor} from 'tinymce';
 import BaseElement from './BaseElement';
+import Column from './Column';
+import Row from './Row';
 
 export default class Grid extends BaseElement {
 
-    private static readonly CMD_INSERT_GRID = 'gridInsert';
-    private static readonly CMD_DELETE_GRID = 'gridDelete';
+    public static readonly CMD_INSERT_GRID = 'gridInsert';
+    public static readonly CMD_DELETE_GRID = 'gridDelete';
 
-    private static readonly MENU_INSERT_GRID = 'grid_insert';
+    public static readonly MENU_INSERT_GRID = 'grid_insert';
 
-    private static readonly BTN_DELETE_GRID = 'grid_delete';
+    public static readonly BTN_DELETE_GRID = 'grid_delete';
 
     constructor(protected editor: Editor) {
         super(editor);
@@ -24,19 +26,20 @@ export default class Grid extends BaseElement {
         // Menu items
         editor.addMenuItem(Grid.MENU_INSERT_GRID, {
             icon: 'table',
-            text: 'Insert grid',
+            text: 'grid.insert',
             cmd: Grid.CMD_INSERT_GRID,
             context: 'insert'
         });
 
         editor.addButton(Grid.BTN_DELETE_GRID, {
-            icon: 'remove',
-            text: 'Delete grid',
+            icon: 'tabledelete',
             cmd: Grid.CMD_DELETE_GRID,
-            context: 'delete'
+            context: 'delete',
+            tooltip: 'Delete grid',
         });
 
-        this.editor.addContextToolbar(this.getElementColumn, `${Grid.BTN_DELETE_GRID} | column | row`);
+        this.editor.addContextToolbar(this.isElementColumn, `${Grid.BTN_DELETE_GRID} | ${Column.BTN_COLUMN_PROPERTIES} ${Column.BTN_COLUMN_INSERT_AFTER} ${Column.BTN_COLUMN_INSERT_BEFORE} ${Column.BTN_COLUMN_DELETE} | ${Row.BTN_ROW_INSERT_AFTER} ${Row.BTN_ROW_INSERT_BEFORE} ${Row.BTN_ROW_DELETE}`);
+        this.editor.addContextToolbar(this.isElementRow, `${Grid.BTN_DELETE_GRID} | ${Column.BTN_COLUMN_PROPERTIES} ${Column.BTN_COLUMN_INSERT_AFTER} ${Column.BTN_COLUMN_INSERT_BEFORE} ${Column.BTN_COLUMN_DELETE} | ${Row.BTN_ROW_INSERT_AFTER} ${Row.BTN_ROW_INSERT_BEFORE} ${Row.BTN_ROW_DELETE}`);
     }
 
     private insert(ui: boolean, value: object): boolean {
@@ -49,7 +52,7 @@ export default class Grid extends BaseElement {
     }
 
     private delete(ui: boolean, value: object): boolean {
-        const element = this.getElement();
+        const element: HTMLElement = <HTMLElement> this.getElement();
         if (element) {
             this.editor.dom.remove(element);
             return true;

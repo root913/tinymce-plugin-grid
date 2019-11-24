@@ -17,24 +17,42 @@ export default class InsertColumn {
         {text: '12', value: '12'}
     ];
 
-    public static render(onSubmit) {
+    public static readonly breakpoints = [
+        {text: 'Small', value: 'small', preffix: 'sm'},
+        {text: 'Medium', value: 'medium', preffix: 'md'},
+        {text: 'Large', value: 'large', preffix: 'lg'},
+    ];
 
+    public static render(onSubmit: { (data: any): void; (data: any): void; }, args: { class?: string, selected?: {} }) {
+        const selected = 'selected' in args ? args.selected : {};
         return {
-            title: 'Insert grid',
+            title: 'Insert column',
             data: {},
             body: [
-                this.breadpoint('small', 'Small'),
-                this.breadpoint('medium', 'Medium'),
-                this.breadpoint('large', 'Large'),
+                ... this.breakpoints.map((br) => this.breadpoint(br, selected))
             ],
             onSubmit
         };
     }
 
-    private static breadpoint(name, label) {
+    public static getSelected(className: string) {
+        const result = {};
+        this.breakpoints.forEach((breadpoint) => {
+            const regex = new RegExp(`col-${breadpoint.preffix}-(?<column>[\\d]+)`, 'gi');
+            const match = regex.exec(className);
+            let column = '';
+            if (match && 'column' in match.groups) {
+                column = match.groups.column;
+            }
+            result[breadpoint.value] = column;
+        });
+        return result;
+    }
+
+    private static breadpoint(breadpoint: { text: string; value: string; preffix: string}, selected) {
         return {
             type: 'container',
-            label,
+            label: breadpoint.text,
             layout: 'flex',
             direction: 'row',
             align: 'center',
@@ -42,7 +60,8 @@ export default class InsertColumn {
             items: [
                 {
                     type: 'listbox',
-                    name,
+                    name: breadpoint.value,
+                    value: breadpoint.value in selected ? selected[breadpoint.value] : '',
                     values: this.columns,
                 },
             ]
