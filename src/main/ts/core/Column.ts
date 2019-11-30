@@ -79,7 +79,12 @@ export default class Column extends BaseElement {
     private delete(ui: boolean, value: object): boolean {
         const column: HTMLElement = <HTMLElement> this.getElementColumn();
         if (column) {
-            this.editor.dom.remove(column);
+            const row = column.parentNode;
+            if (row.querySelectorAll('.grid-col').length === 1) {
+                return false;
+            } else {
+                this.editor.dom.remove(column);
+            }
             return true;
         }
         return false;
@@ -139,7 +144,7 @@ export default class Column extends BaseElement {
         const md = breakpoints.medium.length > 0 ? `col-md-${breakpoints.medium}` : '';
         const lg = breakpoints.large.length > 0 ? `col-lg-${breakpoints.large}` : '';
         const className = `${sm} ${md} ${lg}`;
-        const node = `<div class="grid-col ${className.trim()} editoNonEditable">&nbsp;</div>`;
+        const node = `<div class="grid-col ${className.trim()}">&nbsp;</div>`;
 
         const div = document.createElement('div');
         div.innerHTML = node.trim();

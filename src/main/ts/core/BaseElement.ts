@@ -16,7 +16,7 @@ export default class BaseElement {
     }
 
     protected getElement() {
-        return this.editor.dom.getParent(this.editor.selection.getStart(), '.grid');
+        return this.editor.dom.getParent(this.editor.selection.getStart(), '.grid') as Element;
     }
 
     protected isElement() {
@@ -24,15 +24,26 @@ export default class BaseElement {
     }
 
     protected getElementColumn() {
-        return this.editor.dom.getParent(this.editor.selection.getStart(), '.grid-col');
+        return this.editor.dom.getParent(this.editor.selection.getStart(), '.grid-col') as Element;
     }
 
     protected isElementColumn() {
-        return !!this.getElementColumn();
+        const column = this.getElementColumn();
+        if (column) {
+            const elements = this.editor.getBody().querySelectorAll('.grid-col.focused');
+            elements.forEach((el) => {
+                el.classList.remove('focused');
+            });
+
+            if (column.classList.contains('grid-col')) {
+                column.classList.add('focused');
+            }
+        }
+        return !!column;
     }
 
     protected getElementRow() {
-        return this.editor.dom.getParent(this.editor.selection.getStart(), '.grid-row');
+        return this.editor.dom.getParent(this.editor.selection.getStart(), '.grid-row') as Element;
     }
 
     protected isElementRow() {

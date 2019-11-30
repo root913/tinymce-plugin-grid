@@ -39,7 +39,6 @@ export default class Grid extends BaseElement {
         });
 
         this.editor.addContextToolbar(this.isElementColumn, `${Grid.BTN_DELETE_GRID} | ${Column.BTN_COLUMN_PROPERTIES} ${Column.BTN_COLUMN_INSERT_AFTER} ${Column.BTN_COLUMN_INSERT_BEFORE} ${Column.BTN_COLUMN_DELETE} | ${Row.BTN_ROW_INSERT_AFTER} ${Row.BTN_ROW_INSERT_BEFORE} ${Row.BTN_ROW_DELETE}`);
-        this.editor.addContextToolbar(this.isElementRow, `${Grid.BTN_DELETE_GRID} | ${Column.BTN_COLUMN_PROPERTIES} ${Column.BTN_COLUMN_INSERT_AFTER} ${Column.BTN_COLUMN_INSERT_BEFORE} ${Column.BTN_COLUMN_DELETE} | ${Row.BTN_ROW_INSERT_AFTER} ${Row.BTN_ROW_INSERT_BEFORE} ${Row.BTN_ROW_DELETE}`);
     }
 
     private insert(ui: boolean, value: object): boolean {
@@ -62,9 +61,9 @@ export default class Grid extends BaseElement {
 
     private template() {
         const node = `
-        <div class="grid container editoNonEditable">
-            <div class="grid-row row editoNonEditable">
-                <div class="grid-col col-lg-12 editoNonEditable">Lorem ipsum</div>
+        <div class="grid container">
+            <div class="grid-row row">
+                <div class="grid-col col-lg-12">Lorem ipsum</div>
             </div>
         </div>`;
         return node;

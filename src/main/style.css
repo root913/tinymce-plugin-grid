@@ -5,24 +5,27 @@
 */
 
 .grid-col {
-    border-right: 1px solid black;
+    border: 1px dotted black;
     box-sizing: border-box;
     min-height: 25px !important;
+    padding: 5px;
+    background-color: aliceblue;
 }
 
-.grid-col:last-child {
-    border-right: none;
+.grid-col.focused {
+    background-color: #ffffc9;
 }
 
 .grid-row {
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
+    border-top: 1px dotted black;
+    border-left: 1px dotted black;
+    border-right: 1px dotted black;
     min-height: 25px;
+    padding: 10px;
 }
 
 .grid-row:last-child {
-    border-bottom: 1px solid black;
+    border-bottom: 1px dotted black;
 }
 
 .container {

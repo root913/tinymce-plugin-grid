@@ -1,5 +1,6 @@
 import {Editor} from 'tinymce';
 import BaseElement from './BaseElement';
+import Column from './Column';
 
 export default class Row extends BaseElement {
     public static readonly CMD_INSERT_AFTER_ROW = 'rowInsertAfter';
@@ -55,10 +56,11 @@ export default class Row extends BaseElement {
     private insert(ui: boolean, value: any): boolean {
         const element: HTMLElement = <HTMLElement> this.getElementRow();
         if (element) {
+            const newRow = this.template();
             if (value === 'after') {
-                element.parentNode.insertBefore(this.template(), element.nextSibling);
+                element.parentNode.insertBefore(newRow, element.nextSibling);
             } else {
-                element.parentNode.insertBefore(this.template(), element);
+                element.parentNode.insertBefore(newRow, element);
             }
             return true;
         }
@@ -76,7 +78,10 @@ export default class Row extends BaseElement {
 
     private template() {
         const div = document.createElement('div');
-        div.innerHTML = `<div class="grid-row row editoNonEditable"></div>`;
+        div.innerHTML = `
+        <div class="grid-row row">
+            <div class="grid-col col-lg-12">&nbsp;</div>
+        </div>`.trim();
         return div.firstChild;
     }
 }
