@@ -1,6 +1,7 @@
 import {Editor} from 'tinymce';
 import BaseElement from './BaseElement';
-import Column from './Column';
+import Settings from './Settings';
+import IPreset from '../presets/IPreset';
 
 export default class Row extends BaseElement {
     public static readonly CMD_INSERT_AFTER_ROW = 'rowInsertAfter';
@@ -11,32 +12,33 @@ export default class Row extends BaseElement {
     public static readonly BTN_ROW_INSERT_BEFORE = 'row_insert_before';
     public static readonly BTN_ROW_DELETE = 'row_delete';
 
-    constructor(protected editor: Editor) {
-        super(editor);
+    constructor(protected settings: Settings, protected preset: IPreset, protected editor: Editor) {
+        super(settings, editor);
 
+        // Binds commands
         this.insert = this.insert.bind(this);
         this.insertAfter = this.insertAfter.bind(this);
         this.insertBefore = this.insertBefore.bind(this);
         this.delete = this.delete.bind(this);
 
+        // Commands
         editor.addCommand(Row.CMD_INSERT_AFTER_ROW, this.insertAfter);
         editor.addCommand(Row.CMD_INSERT_BEFORE_ROW, this.insertBefore);
         editor.addCommand(Row.CMD_DELETE_ROW, this.delete);
 
+        // Buttons
         editor.addButton(Row.BTN_ROW_INSERT_AFTER, {
             icon: 'tableinsertrowafter',
             cmd: Row.CMD_INSERT_AFTER_ROW,
             context: 'insert',
             tooltip: 'Insert row after',
         });
-
         editor.addButton(Row.BTN_ROW_INSERT_BEFORE, {
             icon: 'tableinsertrowbefore',
             cmd: Row.CMD_INSERT_BEFORE_ROW,
             context: 'insert',
             tooltip: 'Insert row before',
         });
-
         editor.addButton(Row.BTN_ROW_DELETE, {
             icon: 'tabledeleterow',
             cmd: Row.CMD_DELETE_ROW,
@@ -45,18 +47,42 @@ export default class Row extends BaseElement {
         });
     }
 
+    /**
+     * Inserts Row element after selection
+     *
+     * @param   {boolean}  ui
+     * @param   {any}      value
+     *
+     * @return  {boolean}
+     */
     private insertAfter(ui: boolean, value: any): boolean {
         return this.insert(ui, 'after');
     }
 
+    /**
+     * Inserts Row element before selection
+     *
+     * @param   {boolean}  ui
+     * @param   {any}      value
+     *
+     * @return  {boolean}
+     */
     private insertBefore(ui: boolean, value: any): boolean {
         return this.insert(ui, 'before');
     }
 
+    /**
+     * Inserts Row element
+     *
+     * @param   {boolean}  ui
+     * @param   {any}      value
+     *
+     * @return  {boolean}
+     */
     private insert(ui: boolean, value: any): boolean {
         const element: HTMLElement = <HTMLElement> this.getElementRow();
         if (element) {
-            const newRow = this.template();
+            const newRow = this.preset.renderRow();
             if (value === 'after') {
                 element.parentNode.insertBefore(newRow, element.nextSibling);
             } else {
@@ -67,6 +93,14 @@ export default class Row extends BaseElement {
         return false;
     }
 
+    /**
+     * Deletes selected Row element
+     *
+     * @param   {boolean}  ui
+     * @param   {object}   value
+     *
+     * @return  {boolean}
+     */
     private delete(ui: boolean, value: object): boolean {
         const element: HTMLElement = <HTMLElement> this.getElementRow();
         if (element) {
@@ -74,14 +108,5 @@ export default class Row extends BaseElement {
             return true;
         }
         return false;
-    }
-
-    private template() {
-        const div = document.createElement('div');
-        div.innerHTML = `
-        <div class="grid-row row">
-            <div class="grid-col col-lg-12">&nbsp;</div>
-        </div>`.trim();
-        return div.firstChild;
     }
 }

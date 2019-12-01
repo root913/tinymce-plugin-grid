@@ -42,8 +42,12 @@ module.exports = {
                 to: 'langs'
             },
             {
-                from: './src/main/style.css',
-                to: 'plugins/grid/style.css'
+                from: './src/main/bootstrap3.css',
+                to: 'plugins/grid/bootstrap3.css'
+            },
+            {
+                from: './src/main/foundation5.css',
+                to: 'plugins/grid/foundation5.css'
             },
             {
                 from: './src/main/langs',

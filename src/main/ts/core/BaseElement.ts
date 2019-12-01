@@ -1,7 +1,8 @@
 import {Editor} from 'tinymce';
+import Settings from './Settings';
 
 export default class BaseElement {
-    constructor(protected editor: Editor) {
+    constructor(protected settings: Settings, protected editor: Editor) {
         this.getElement = this.getElement.bind(this);
         this.isElement = this.isElement.bind(this);
         this.getElementColumn = this.getElementColumn.bind(this);
@@ -16,7 +17,7 @@ export default class BaseElement {
     }
 
     protected getElement() {
-        return this.editor.dom.getParent(this.editor.selection.getStart(), '.grid') as Element;
+        return this.editor.dom.getParent(this.editor.selection.getStart(), '.grid-container') as Element;
     }
 
     protected isElement() {

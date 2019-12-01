@@ -1,5 +1,6 @@
 import { KeyboardEvent } from '@ephox/dom-globals';
 import { Editor } from 'tinymce';
+import Settings from './Settings';
 
 export default class Noneditable {
     private classNames = [
@@ -7,7 +8,7 @@ export default class Noneditable {
         'grid-row'
     ];
 
-    constructor(private editor: Editor) {
+    constructor(private settings: Settings, private editor: Editor) {
         this.onKeyDown = this.onKeyDown.bind(this);
         editor.on('keydown', this.onKeyDown);
     }
