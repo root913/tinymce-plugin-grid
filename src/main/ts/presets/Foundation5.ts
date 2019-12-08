@@ -62,7 +62,7 @@ export default class Foundation5 implements IPreset {
         const node = `
         <div class="grid-container container">
             <div class="grid-row row">
-                <div class="grid-col columns large-12">Lorem ipsum</div>
+                <div class="grid-col columns large-12"><p>Lorem ipsum</p></div>
             </div>
         </div>`;
         const div = document.createElement('div');
@@ -77,7 +77,7 @@ export default class Foundation5 implements IPreset {
         const div = document.createElement('div');
         div.innerHTML = `
         <div class="grid-row row">
-            <div class="grid-col columns large-12">&nbsp;</div>
+            <div class="grid-col columns large-12"><p>Lorem ipsum</p></div>
         </div>`.trim();
         return div.firstChild as Element;
     }
@@ -90,7 +90,7 @@ export default class Foundation5 implements IPreset {
         const md = data.medium.length > 0 ? `medium-${data.medium}` : '';
         const lg = data.large.length > 0 ? `large-${data.large}` : '';
         const className = `${sm} ${md} ${lg}`;
-        const node = `<div class="grid-col columns ${className.trim()}">&nbsp;</div>`;
+        const node = `<div class="grid-col columns ${className.trim()}"><p>Lorem ipsum</p></div>`;
 
         const div = document.createElement('div');
         div.innerHTML = node.trim();

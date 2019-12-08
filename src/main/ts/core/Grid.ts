@@ -70,7 +70,6 @@ export default class Grid extends BaseElement {
      */
     private delete(ui: boolean, value: object): boolean {
         const element: HTMLElement = <HTMLElement> this.getElement();
-        console.dir(element);
         if (element) {
             this.editor.dom.remove(element);
             return true;

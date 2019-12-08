@@ -9,8 +9,7 @@
     "test-manual": "bedrock -d src/test/ts/",
     "build": "webpack --mode production",
     "dev": "webpack --mode development",
-    "start": "webpack-dev-server --open --mode development",
-    "deploy:github": "npm run build && node ./deploy-github"
+    "start": "webpack-dev-server --open --mode development"
   },
   "keywords": [],
   "author": "Krzysztof Stec",

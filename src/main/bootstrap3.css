@@ -16,6 +16,14 @@
     background-color: #ffffc9;
 }
 
+.grid-col p {
+    display: block;
+    margin-block-start: 0.2em;
+    margin-block-end: 0.2em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
 .grid-row {
     border-top: 1px dotted black;
     border-left: 1px dotted black;

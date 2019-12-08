@@ -20,35 +20,27 @@ export default class BaseElement {
         return this.editor.dom.getParent(this.editor.selection.getStart(), '.grid-container') as Element;
     }
 
-    protected isElement() {
-        return !!this.getElement();
+    protected isElement(container: any) {
+        return this.editor.dom.is(container, '.grid-container') && this.editor.getBody().contains(container);
     }
 
     protected getElementColumn() {
         return this.editor.dom.getParent(this.editor.selection.getStart(), '.grid-col') as Element;
     }
 
-    protected isElementColumn() {
-        const column = this.getElementColumn();
-        if (column) {
-            const elements = this.editor.getBody().querySelectorAll('.grid-col.focused');
-            elements.forEach((el) => {
-                el.classList.remove('focused');
-            });
-
-            if (column.classList.contains('grid-col')) {
-                column.classList.add('focused');
-            }
+    protected isElementColumn(column: any) {
+        if (this.editor.dom.is(column, '.grid-col') && this.editor.getBody().contains(column)) {
+            return true;
         }
-        return !!column;
+        return false;
     }
 
     protected getElementRow() {
         return this.editor.dom.getParent(this.editor.selection.getStart(), '.grid-row') as Element;
     }
 
-    protected isElementRow() {
-        return !!this.getElementRow();
+    protected isElementRow(row: any) {
+        return this.editor.dom.is(row, '.grid-row') && this.editor.getBody().contains(row);
     }
 
     protected selectElement(target: any) {

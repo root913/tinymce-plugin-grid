@@ -70,7 +70,7 @@ export default class Bootstrap3 implements IPreset {
         const node = `
         <div class="grid-container container">
             <div class="grid-row row">
-                <div class="grid-col col-lg-12">Lorem ipsum</div>
+                <div class="grid-col col-lg-12"><p>Lorem ipsum</p></div>
             </div>
         </div>`;
         const div = document.createElement('div');
@@ -87,7 +87,7 @@ export default class Bootstrap3 implements IPreset {
         const div = document.createElement('div');
         div.innerHTML = `
         <div class="grid-row row">
-            <div class="grid-col col-lg-12">&nbsp;</div>
+            <div class="grid-col col-lg-12"><p>Lorem ipsum</p></div>
         </div>`.trim();
         return div.firstChild as Element;
     }
@@ -103,7 +103,7 @@ export default class Bootstrap3 implements IPreset {
         const md = data.medium.length > 0 ? `col-md-${data.medium}` : '';
         const lg = data.large.length > 0 ? `col-lg-${data.large}` : '';
         const className = `${xs} ${sm} ${md} ${lg}`;
-        const node = `<div class="grid-col ${className.trim()}">&nbsp;</div>`;
+        const node = `<div class="grid-col ${className.trim()}"><p>Lorem ipsum</p></div>`;
 
         const div = document.createElement('div');
         div.innerHTML = node.trim();
