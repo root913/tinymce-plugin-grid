@@ -42,7 +42,7 @@ export default class Bootstrap3 implements IPreset {
      * @param {string} columnPreffix
      * @return {RegExp}
      */
-    public columnClassRegex = (columnPreffix: string): RegExp => new RegExp(`col-${columnPreffix}-(?<column>[\\d]+)`, 'gi');
+    public columnClassRegex = (columnPreffix: string): RegExp => new RegExp(`col-${columnPreffix}-([\\d]+)`, 'gi');
 
     /**
      * Builds column class based on prefix and breakpoint

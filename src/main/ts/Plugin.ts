@@ -4,7 +4,6 @@ import Row from './core/Row';
 import Column from './core/Column';
 import { Editor } from 'tinymce';
 import Settings from './core/Settings';
-import IPreset from './presets/IPreset';
 // Presets
 import Bootstrap3 from './presets/Bootstrap3';
 import Foundation5 from './presets/Foundation5';

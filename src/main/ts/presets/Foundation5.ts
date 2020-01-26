@@ -36,7 +36,7 @@ export default class Foundation5 implements IPreset {
     /**
      * Returns regxp for column class
      */
-    public columnClassRegex = (columnPreffix: string): RegExp => new RegExp(`${columnPreffix}-(?<column>[\\d]+)`, 'gi');
+    public columnClassRegex = (columnPreffix: string): RegExp => new RegExp(`${columnPreffix}-([\\d]+)`, 'gi');
 
     /**
      * Builds column class based on prefix and breakpoint

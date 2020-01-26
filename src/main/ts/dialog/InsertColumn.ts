@@ -21,8 +21,8 @@ export default class InsertColumn {
         this.preset.breakpoints.forEach((breadpoint) => {
             const match = this.preset.columnClassRegex(breadpoint.preffix).exec(className);
             let column = '';
-            if (match && 'column' in match.groups) {
-                column = match.groups.column;
+            if (match && match.length > 1) {
+                column = match[1];
             }
             result[breadpoint.value] = column;
         });
