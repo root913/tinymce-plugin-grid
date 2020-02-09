@@ -1,5 +1,5 @@
-# tinymcePluginGrid TinyMCE Plugin
+# TinyMCE Grid
 
-Welcome stranger! This is a repo containing the tinymcePluginGrid TinyMCE plugin.
+Grid plugin for tinyMCE WYSIWYG editor.
 
 <a href="https://root913.github.io/tinymce-plugin-grid/dist/index.html">Demo</a>

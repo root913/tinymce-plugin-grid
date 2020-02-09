@@ -1,6 +1,6 @@
 ﻿tinymce.addI18n('pl', {
     'grid.insert' : 'Wstaw grid',
-    'grid.remove_all' : 'Usuń grid',
+    'grid.remove' : 'Usuń grid',
 
     'grid.row' : 'Wiersz',
     'grid.row.insert_after' : 'Wstaw wiersz przed',
@@ -11,5 +11,5 @@
     'grid.column.insert_after' : 'Wstaw kolumnę przed',
     'grid.column.insert_before' : 'Wstaw kolumnę po',
     'grid.column.remove' : 'Usuń kolumnę',
+    'grid.column.properties': 'Ustawienia kolumny'
 });
-console.log('test');

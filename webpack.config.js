@@ -38,27 +38,19 @@ module.exports = {
                 to: 'index.html'
             },
             {
-                from: './src/demo/html/langs',
-                to: 'langs'
-            },
-            {
                 from: './src/main/bootstrap3.css',
                 to: 'plugins/grid/bootstrap3.css'
             },
             {
                 from: './src/main/foundation5.css',
                 to: 'plugins/grid/foundation5.css'
-            },
-            {
-                from: './src/main/langs',
-                to: 'plugins/grid/langs'
-            },
+            }
         ]),
     ],
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
-        port: 9000
+        port: 9091
     },
     resolve: {
         extensions: [ '.tsx', '.ts', '.js', '.css' ],

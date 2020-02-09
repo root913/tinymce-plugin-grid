@@ -1,4 +1,4 @@
-import { Editor } from 'tinymce';
+import { Editor, util } from 'tinymce';
 import BaseElement from './BaseElement';
 import Settings from './Settings';
 import Column from './Column';
@@ -13,8 +13,8 @@ export default class Grid extends BaseElement {
 
     public static readonly BTN_DELETE_GRID = 'grid_delete';
 
-    constructor(protected settings: Settings, protected preset: IPreset, protected editor: Editor) {
-        super(settings, editor);
+    constructor(protected settings: Settings, protected preset: IPreset, protected editor: Editor, protected i18n: util.i18n) {
+        super(settings, editor, i18n);
 
         // Binds commands
         this.insert = this.insert.bind(this);
@@ -27,7 +27,7 @@ export default class Grid extends BaseElement {
         // Menu items
         editor.addMenuItem(Grid.MENU_INSERT_GRID, {
             icon: 'table',
-            text: 'Insert grid',
+            text: i18n.translate('grid.insert'),
             cmd: Grid.CMD_INSERT_GRID,
             context: 'insert'
         });
@@ -37,7 +37,7 @@ export default class Grid extends BaseElement {
             icon: 'tabledelete',
             cmd: Grid.CMD_DELETE_GRID,
             context: 'delete',
-            tooltip: 'Delete grid',
+            tooltip: i18n.translate('grid.remove'),
         });
 
         this.editor.addContextToolbar(this.isElementColumn, `${Grid.BTN_DELETE_GRID} | ${Column.BTN_COLUMN_PROPERTIES} ${Column.BTN_COLUMN_INSERT_AFTER} ${Column.BTN_COLUMN_INSERT_BEFORE} ${Column.BTN_COLUMN_DELETE} | ${Row.BTN_ROW_INSERT_AFTER} ${Row.BTN_ROW_INSERT_BEFORE} ${Row.BTN_ROW_DELETE}`);

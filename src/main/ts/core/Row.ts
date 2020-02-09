@@ -1,4 +1,4 @@
-import {Editor} from 'tinymce';
+import {Editor, util} from 'tinymce';
 import BaseElement from './BaseElement';
 import Settings from './Settings';
 import IPreset from '../presets/IPreset';
@@ -12,8 +12,8 @@ export default class Row extends BaseElement {
     public static readonly BTN_ROW_INSERT_BEFORE = 'row_insert_before';
     public static readonly BTN_ROW_DELETE = 'row_delete';
 
-    constructor(protected settings: Settings, protected preset: IPreset, protected editor: Editor) {
-        super(settings, editor);
+    constructor(protected settings: Settings, protected preset: IPreset, protected editor: Editor, protected i18n: util.i18n) {
+        super(settings, editor, i18n);
 
         // Binds commands
         this.insert = this.insert.bind(this);
@@ -31,19 +31,19 @@ export default class Row extends BaseElement {
             icon: 'tableinsertrowafter',
             cmd: Row.CMD_INSERT_AFTER_ROW,
             context: 'insert',
-            tooltip: 'Insert row after',
+            tooltip: i18n.translate('grid.row.insert_after'),
         });
         editor.addButton(Row.BTN_ROW_INSERT_BEFORE, {
             icon: 'tableinsertrowbefore',
             cmd: Row.CMD_INSERT_BEFORE_ROW,
             context: 'insert',
-            tooltip: 'Insert row before',
+            tooltip: i18n.translate('grid.row.insert_before'),
         });
         editor.addButton(Row.BTN_ROW_DELETE, {
             icon: 'tabledeleterow',
             cmd: Row.CMD_DELETE_ROW,
             context: 'delete',
-            tooltip: 'Delete row',
+            tooltip: i18n.translate('grid.row.remove'),
         });
     }
 

@@ -1,3 +1,5 @@
+import './../langs/pl';
+import './../langs/en';
 import Noneditable from './core/Noneditable';
 import Grid from './core/Grid';
 import Row from './core/Row';
@@ -26,13 +28,13 @@ const setup = async (editor: Editor, url: string) => {
     }
     editor.contentCSS.push(url + `/${preset.style()}`);
 
-    const noneditable = new Noneditable(settings, editor);
-    const row = new Row(settings, preset, editor);
-    const column = new Column(settings, preset, editor);
-    const grid = new Grid(settings, preset, editor);
+    const noneditable = new Noneditable(settings, editor, tinymce.util.I18n);
+    const row = new Row(settings, preset, editor, tinymce.util.I18n);
+    const column = new Column(settings, preset, editor, tinymce.util.I18n);
+    const grid = new Grid(settings, preset, editor, tinymce.util.I18n);
 };
 
 export default () => {
-    tinymce.PluginManager.add('grid', setup);
     tinymce.PluginManager.requireLangPack('grid');
+    tinymce.PluginManager.add('grid', setup);
 };

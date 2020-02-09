@@ -16,7 +16,6 @@ tinymce.init({
     ' bold italic backcolor | alignleft aligncenter ' +
     ' alignright alignjustify | bullist numlist outdent indent |' +
     ' removeformat | help | grid',
-    language: 'pl',
     height : '250',
     grid_preset: 'Bootstrap3'
 });
@@ -33,7 +32,6 @@ tinymce.init({
     ' bold italic backcolor | alignleft aligncenter ' +
     ' alignright alignjustify | bullist numlist outdent indent |' +
     ' removeformat | help | grid',
-    language: 'pl',
     height : '250',
     grid_preset: 'Foundation5'
 });

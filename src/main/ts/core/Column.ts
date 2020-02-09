@@ -1,4 +1,4 @@
-import { Editor } from 'tinymce';
+import { Editor, util } from 'tinymce';
 import InsertColumn from '../dialog/InsertColumn';
 import IPreset from '../presets/IPreset';
 import BaseElement from './BaseElement';
@@ -17,8 +17,8 @@ export default class Column extends BaseElement {
 
     private insertColumnDialog: InsertColumn;
 
-    constructor(protected settings: Settings, protected preset: IPreset, protected editor: Editor) {
-        super(settings, editor);
+    constructor(protected settings: Settings, protected preset: IPreset, protected editor: Editor, protected i18n: util.i18n) {
+        super(settings, editor, i18n);
 
         this.insertColumnDialog = new InsertColumn(this.preset);
 
@@ -41,25 +41,25 @@ export default class Column extends BaseElement {
             icon: 'tablecellprops',
             cmd: Column.CMD_PROPERTIES_COLUMN,
             context: 'properties',
-            tooltip: 'Column properties',
+            tooltip: i18n.translate('grid.column.properties'),
         });
         editor.addButton(Column.BTN_COLUMN_INSERT_AFTER, {
             icon: 'tableinsertcolafter',
             cmd: Column.CMD_INSERT_AFTER_COLUMN,
             context: 'insert',
-            tooltip: 'Insert column after',
+            tooltip: i18n.translate('grid.column.insert_after'),
         });
         editor.addButton(Column.BTN_COLUMN_INSERT_BEFORE, {
             icon: 'tableinsertcolbefore',
             cmd: Column.CMD_INSERT_BEFORE_COLUMN,
             context: 'insert',
-            tooltip: 'Insert column before',
+            tooltip: i18n.translate('grid.column.insert_before'),
         });
         editor.addButton(Column.BTN_COLUMN_DELETE, {
             icon: 'tabledeletecol',
             cmd: Column.CMD_DELETE_COLUMN,
             context: 'delete',
-            tooltip: 'Delete column',
+            tooltip: i18n.translate('grid.column.remove'),
         });
     }
 

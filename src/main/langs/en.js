@@ -1,14 +1,15 @@
 ﻿tinymce.addI18n('en', {
-    'grid.insert' : 'Wstaw grid',
-    'grid.remove_all' : 'Usuń grid',
+    'grid.insert' : 'Insert grid',
+    'grid.remove' : 'Delete grid',
 
-    'grid.row' : 'Wiersz',
-    'grid.row.insert_after' : 'Wstaw wiersz przed',
-    'grid.row.insert_before' : 'Wstaw wiersz po',
-    'grid.row.remove' : 'Usuń wiersz',
+    'grid.row' : 'Row',
+    'grid.row.insert_after' : 'Insert row after',
+    'grid.row.insert_before' : 'Insert row before',
+    'grid.row.remove' : 'Delete row',
 
-    'grid.column' : 'Kolumna',
-    'grid.column.insert_after' : 'Wstaw kolumnę przed',
-    'grid.column.insert_before' : 'Wstaw kolumnę po',
-    'grid.column.remove' : 'Usuń kolumnę',
+    'grid.column' : 'Column',
+    'grid.column.insert_after' : 'Insert column before',
+    'grid.column.insert_before' : 'Insert column after',
+    'grid.column.remove' : 'Delete column',
+    'grid.column.properties': 'Column properties'
 });
