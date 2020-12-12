@@ -3,7 +3,10 @@
 *.iws
 *.sublime-workspace
 .cache
+.vscode
+.idea
 /lib
+/scratch
 node_modules
 /config/repl
 /*.log

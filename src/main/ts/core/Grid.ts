@@ -8,9 +8,7 @@ import IPreset from '../presets/IPreset';
 export default class Grid extends BaseElement {
     public static readonly CMD_INSERT_GRID = 'gridInsert';
     public static readonly CMD_DELETE_GRID = 'gridDelete';
-
-    public static readonly MENU_INSERT_GRID = 'grid_insert';
-
+    public static readonly BTN_INSERT_GRID = 'grid_insert';
     public static readonly BTN_DELETE_GRID = 'grid_delete';
 
     constructor(protected settings: Settings, protected preset: IPreset, protected editor: Editor, protected i18n: util.i18n) {
@@ -25,7 +23,7 @@ export default class Grid extends BaseElement {
         editor.addCommand(Grid.CMD_DELETE_GRID, this.delete);
 
         // Menu items
-        editor.addMenuItem(Grid.MENU_INSERT_GRID, {
+        editor.addMenuItem(Grid.BTN_INSERT_GRID, {
             icon: 'table',
             text: i18n.translate('grid.insert'),
             cmd: Grid.CMD_INSERT_GRID,
@@ -33,11 +31,9 @@ export default class Grid extends BaseElement {
         });
 
         // Buttons
-        editor.addButton(Grid.BTN_DELETE_GRID, {
-            icon: 'tabledelete',
-            cmd: Grid.CMD_DELETE_GRID,
-            context: 'delete',
-            tooltip: i18n.translate('grid.remove'),
+        editor.addButton(Grid.BTN_INSERT_GRID, {
+            icon: 'table',
+            cmd: Grid.CMD_INSERT_GRID,
         });
 
         this.editor.addContextToolbar(this.isElementColumn, `${Grid.BTN_DELETE_GRID} | ${Column.BTN_COLUMN_PROPERTIES} ${Column.BTN_COLUMN_INSERT_AFTER} ${Column.BTN_COLUMN_INSERT_BEFORE} ${Column.BTN_COLUMN_DELETE} | ${Row.BTN_ROW_INSERT_AFTER} ${Row.BTN_ROW_INSERT_BEFORE} ${Row.BTN_ROW_DELETE}`);
