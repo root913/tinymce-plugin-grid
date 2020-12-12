@@ -8,14 +8,12 @@ Plugin();
 tinymce.init({
     selector: 'textarea#bootstrap3',
     plugins: [
-        'advlist autolink lists link image charmap print preview anchor',
-        'searchreplace visualblocks code fullscreen',
-        'insertdatetime media table paste code help wordcount grid'
+        'grid'
     ],
     toolbar: 'undo redo | formatselect | ' +
     ' bold italic backcolor | alignleft aligncenter ' +
     ' alignright alignjustify | bullist numlist outdent indent |' +
-    ' removeformat | help | grid',
+    ' removeformat | help | grid_insert',
     height : '250',
     grid_preset: 'Bootstrap3'
 });
@@ -24,14 +22,12 @@ tinymce.init({
 tinymce.init({
     selector: 'textarea#foundation',
     plugins: [
-        'advlist autolink lists link image charmap print preview anchor',
-        'searchreplace visualblocks code fullscreen',
-        'insertdatetime media table paste code help wordcount grid'
+        'grid'
     ],
     toolbar: 'undo redo | formatselect | ' +
     ' bold italic backcolor | alignleft aligncenter ' +
     ' alignright alignjustify | bullist numlist outdent indent |' +
-    ' removeformat | help | grid',
+    ' removeformat | help | grid_insert',
     height : '250',
     grid_preset: 'Foundation5'
 });
