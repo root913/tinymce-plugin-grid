@@ -123,7 +123,7 @@ const minDistConfig = merge(distConfig, {
     },
     output: {
         filename: (pathData) => {
-            return pathData.chunk.id.includes('langs/') ? '[name].js' : '[name].min.js';
+            return pathData.runtime.indexOf('langs/') != -1 ? '[name].js' : '[name].min.js';
         },
         path: path.resolve(__dirname, 'dist'),
     },
