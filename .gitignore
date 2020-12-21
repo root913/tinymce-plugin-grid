@@ -5,6 +5,7 @@
 .cache
 .vscode
 .idea
+/demo
 /lib
 /scratch
 node_modules

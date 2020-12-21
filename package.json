@@ -1,53 +1,53 @@
 {
-  "name": "tinymce-plugin-grid",
-  "version": "1.0.2",
-  "description": "",
-  "scripts": {
-    "prepublishOnly": "npm run lint && npm run build",
-    "lint": "tslint src/**/*.ts",
-    "test": "bedrock-auto -b phantomjs -d src/test/ts/ --singleTimeout=30000",
-    "test-manual": "bedrock -d src/test/ts/",
-    "build": "webpack --mode production",
-    "dev": "webpack --mode development",
-    "start": "webpack-dev-server --open --mode development"
-  },
-  "keywords": [],
-  "author": "Krzysztof Stec",
-  "homepage": "https://root913.github.io/tinymce-plugin-grid",
-  "devDependencies": {
-    "@ephox/agar": "latest",
-    "@ephox/bedrock-client": "^9.6.1",
-    "@ephox/bedrock-server": "^9.7.1",
-    "@ephox/dom-globals": "^3.9.5",
-    "@ephox/mcagar": "latest",
-    "@ephox/tslint-rules": "latest",
-    "@types/estree": "^0.0.45",
-    "@types/tinymce": "^4.6.0",
-    "clean-webpack-plugin": "^3.0.0",
-    "copy-webpack-plugin": "^7.0.0",
-    "tinymce": "^4.7.13",
-    "ts-loader": "^8.0.12",
-    "tslint": "^6.1.3",
-    "typescript": "^4.1.3",
-    "webpack": "^5.10.1",
-    "webpack-cli": "^4.2.0",
-    "webpack-dev-server": "^3.11.0",
-    "webpack-merge": "^5.7.0"
-  },
-  "files": [
-    "lib/main",
-    "lib/demo",
-    "lib/test",
-    "demo",
-    "src",
-    "tsconfig.json",
-    "readme.md",
-    "LEGAL.txt",
-    "CHANGELOG.txt",
-    "LICENSE.txt"
-  ],
-  "main": "./lib/main/ts/api/Main.js",
-  "module": "./lib/main/ts/api/Main.js",
-  "types": "./lib/main/ts/api/Main.d.ts",
-  "license": "Apache-2.0"
+    "name": "tinymce-plugin-grid",
+    "version": "1.0.2",
+    "description": "",
+    "scripts": {
+        "prepublishOnly": "npm run lint && npm run build",
+        "lint": "tslint src/**/*.ts",
+        "test": "bedrock-auto -b phantomjs -d src/test/ts/ --singleTimeout=30000",
+        "test-manual": "bedrock -d src/test/ts/",
+        "build": "webpack --mode production",
+        "dev": "webpack --mode development",
+        "start": "webpack-dev-server --open --mode development"
+    },
+    "keywords": [
+        "tinymce",
+        "grid",
+        "plugin"
+    ],
+    "author": "Krzysztof Stec",
+    "homepage": "https://root913.github.io/tinymce-plugin-grid",
+    "devDependencies": {
+        "@ephox/agar": "latest",
+        "@ephox/bedrock-client": "^9.6.1",
+        "@ephox/bedrock-server": "^9.7.1",
+        "@ephox/dom-globals": "^3.9.5",
+        "@ephox/mcagar": "latest",
+        "@ephox/tslint-rules": "latest",
+        "@types/estree": "^0.0.45",
+        "@types/tinymce": "^4.6.0",
+        "clean-webpack-plugin": "^3.0.0",
+        "copy-webpack-plugin": "^7.0.0",
+        "tinymce": "^4.7.13",
+        "ts-loader": "^8.0.12",
+        "tslint": "^6.1.3",
+        "typescript": "^4.1.3",
+        "webpack": "^5.10.1",
+        "webpack-cli": "^4.2.0",
+        "webpack-dev-server": "^3.11.0",
+        "webpack-merge": "^5.7.0"
+    },
+    "files": [
+        "dist",
+        "readme.md",
+        "LICENSE.txt"
+    ],
+    "directories": {
+        "lib": "./dist"
+    },
+    "main": "./lib/main/ts/api/Main.js",
+    "module": "./lib/main/ts/api/Main.js",
+    "types": "./lib/main/ts/api/Main.d.ts",
+    "license": "Apache-2.0"
 }

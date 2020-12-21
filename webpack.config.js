@@ -66,6 +66,10 @@ const demoConfig = merge(config, {
                     to: 'plugins/grid/bootstrap3.css'
                 },
                 {
+                    from: './src/main/bootstrap4.css',
+                    to: 'plugins/grid/bootstrap4.css'
+                },
+                {
                     from: './src/main/foundation5.css',
                     to: 'plugins/grid/foundation5.css'
                 }
@@ -89,6 +93,10 @@ const distConfig = merge(config,{
                 {
                     from: './src/main/bootstrap3.css',
                     to: 'bootstrap3.css'
+                },
+                {
+                    from: './src/main/bootstrap4.css',
+                    to: 'bootstrap4.css'
                 },
                 {
                     from: './src/main/foundation5.css',

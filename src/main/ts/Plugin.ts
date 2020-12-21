@@ -8,24 +8,24 @@ import { Editor } from 'tinymce';
 import Settings from './core/Settings';
 // Presets
 import Bootstrap3 from './presets/Bootstrap3';
+import Bootstrap4 from './presets/Bootstrap4';
 import Foundation5 from './presets/Foundation5';
 
 declare const tinymce: any;
+
+const presets = {
+    Bootstrap3,
+    Bootstrap4,
+    Foundation5,
+};
+
+const resolvePreset = (settings: Settings, editor: Editor) => new presets[settings.preset]();
 
 const setup = async (editor: Editor, url: string) => {
     /* tslint:disable:no-unused-variable */
     const settings = new Settings(editor);
 
-    let preset = null;
-
-    switch (settings.preset) {
-        case 'Foundation5':
-            preset = new Foundation5(settings, editor);
-            break;
-        default:
-            preset = new Bootstrap3(settings, editor);
-            break;
-    }
+    const preset = resolvePreset(settings, editor);
     editor.contentCSS.push(url + `/${preset.style()}`);
 
     const noneditable = new Noneditable(settings, editor, tinymce.util.I18n);
