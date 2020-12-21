@@ -1,6 +1,6 @@
 {
     "name": "tinymce-plugin-grid",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "",
     "scripts": {
         "prepublishOnly": "npm run lint && npm run build",
