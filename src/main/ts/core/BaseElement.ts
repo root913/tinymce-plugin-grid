@@ -1,8 +1,8 @@
-import {Editor, util} from 'tinymce';
+import {Editor, I18n} from 'tinymce';
 import Settings from './Settings';
 
 export default class BaseElement {
-    constructor(protected settings: Settings, protected editor: Editor, protected i18n: util.i18n) {
+    constructor(protected settings: Settings, protected editor: Editor, protected i18n: I18n) {
         this.getElement = this.getElement.bind(this);
         this.isElement = this.isElement.bind(this);
         this.getElementColumn = this.getElementColumn.bind(this);
@@ -29,9 +29,18 @@ export default class BaseElement {
     }
 
     protected isElementColumn(column: any) {
-        if (this.editor.dom.is(column, '.grid-col') && this.editor.getBody().contains(column)) {
-            return true;
+        if (false === this.editor.getBody().contains(column)) {
+            return false;
         }
+
+        const parents = this.editor.dom.getParents(column, '.grid-col');
+
+        for (const parent of parents) {
+            if (parent.classList.contains('grid-col')) {
+                return true;
+            }
+        }
+
         return false;
     }
 

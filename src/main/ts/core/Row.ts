@@ -1,4 +1,4 @@
-import {Editor, util} from 'tinymce';
+import { Editor, I18n, Ui } from 'tinymce';
 import BaseElement from './BaseElement';
 import Settings from './Settings';
 import IPreset from '../presets/IPreset';
@@ -12,7 +12,7 @@ export default class Row extends BaseElement {
     public static readonly BTN_ROW_INSERT_BEFORE = 'row_insert_before';
     public static readonly BTN_ROW_DELETE = 'row_delete';
 
-    constructor(protected settings: Settings, protected preset: IPreset, protected editor: Editor, protected i18n: util.i18n) {
+    constructor(protected settings: Settings, protected preset: IPreset, protected editor: Editor, protected i18n: I18n) {
         super(settings, editor, i18n);
 
         // Binds commands
@@ -21,65 +21,54 @@ export default class Row extends BaseElement {
         this.insertBefore = this.insertBefore.bind(this);
         this.delete = this.delete.bind(this);
 
-        // Commands
-        editor.addCommand(Row.CMD_INSERT_AFTER_ROW, this.insertAfter);
-        editor.addCommand(Row.CMD_INSERT_BEFORE_ROW, this.insertBefore);
-        editor.addCommand(Row.CMD_DELETE_ROW, this.delete);
-
         // Buttons
-        editor.addButton(Row.BTN_ROW_INSERT_AFTER, {
-            icon: 'tableinsertrowafter',
-            cmd: Row.CMD_INSERT_AFTER_ROW,
-            context: 'insert',
+        editor.ui.registry.addButton(Row.BTN_ROW_INSERT_AFTER, {
+            icon: 'table-insert-row-after',
             tooltip: i18n.translate('grid.row.insert_after'),
+            onAction: this.insertAfter
         });
-        editor.addButton(Row.BTN_ROW_INSERT_BEFORE, {
-            icon: 'tableinsertrowbefore',
-            cmd: Row.CMD_INSERT_BEFORE_ROW,
-            context: 'insert',
+        editor.ui.registry.addButton(Row.BTN_ROW_INSERT_BEFORE, {
+            icon: 'table-insert-row-above',
             tooltip: i18n.translate('grid.row.insert_before'),
+            onAction: this.insertBefore
         });
-        editor.addButton(Row.BTN_ROW_DELETE, {
-            icon: 'tabledeleterow',
-            cmd: Row.CMD_DELETE_ROW,
-            context: 'delete',
+        editor.ui.registry.addButton(Row.BTN_ROW_DELETE, {
+            icon: 'table-delete-row',
             tooltip: i18n.translate('grid.row.remove'),
+            onAction: this.delete
         });
     }
 
     /**
      * Inserts Row element after selection
      *
-     * @param   {boolean}  ui
-     * @param   {any}      value
+     * @param   {Ui.Toolbar.ToolbarButtonInstanceApi}  api
      *
-     * @return  {boolean}
+     * @return  {void}
      */
-    private insertAfter(ui: boolean, value: any): boolean {
-        return this.insert(ui, 'after');
+    private insertAfter(api: Ui.Toolbar.ToolbarButtonInstanceApi): void {
+        this.insert(api, 'after');
     }
 
     /**
      * Inserts Row element before selection
      *
-     * @param   {boolean}  ui
-     * @param   {any}      value
+     * @param   {Ui.Toolbar.ToolbarButtonInstanceApi}  api
      *
-     * @return  {boolean}
+     * @return  {void}
      */
-    private insertBefore(ui: boolean, value: any): boolean {
-        return this.insert(ui, 'before');
+    private insertBefore(api: Ui.Toolbar.ToolbarButtonInstanceApi): void {
+        this.insert(api, 'before');
     }
 
     /**
      * Inserts Row element
      *
-     * @param   {boolean}  ui
-     * @param   {any}      value
+     * @param   {Ui.Toolbar.ToolbarButtonInstanceApi}  api
      *
-     * @return  {boolean}
+     * @return  {void}
      */
-    private insert(ui: boolean, value: any): boolean {
+    private insert(api: Ui.Toolbar.ToolbarButtonInstanceApi, value: string): boolean {
         const element: HTMLElement = <HTMLElement> this.getElementRow();
         if (element) {
             const newRow = this.preset.renderRow();
@@ -96,17 +85,14 @@ export default class Row extends BaseElement {
     /**
      * Deletes selected Row element
      *
-     * @param   {boolean}  ui
-     * @param   {object}   value
+     * @param   {Ui.Toolbar.ToolbarButtonInstanceApi}  api
      *
-     * @return  {boolean}
+     * @return  {void}
      */
-    private delete(ui: boolean, value: object): boolean {
+    private delete(api: Ui.Toolbar.ToolbarButtonInstanceApi): void {
         const element: HTMLElement = <HTMLElement> this.getElementRow();
         if (element) {
             this.editor.dom.remove(element);
-            return true;
         }
-        return false;
     }
 }

@@ -50,6 +50,10 @@ const demoConfig = merge(config, {
                     to: 'tinymce.min.js'
                 },
                 {
+                    from: 'node_modules/tinymce/icons',
+                    to: 'icons'
+                },
+                {
                     from: 'node_modules/tinymce/themes',
                     to: 'themes'
                 },
@@ -126,6 +130,7 @@ const minDistConfig = merge(distConfig, {
         minimizer: [
             new TerserPlugin({
                 test: /\.js(\?.*)?$/i,
+                extractComments: false,
             }),
         ],
     },

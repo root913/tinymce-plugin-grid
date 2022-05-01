@@ -5,7 +5,6 @@ import IPreset, { Breakpoint, Column } from './IPreset';
 export default class Foundation5 implements IPreset {
 
     public readonly columns: Column[] = [
-        {text: 'Select column', value: ''},
         {text: '1', value: '1'},
         {text: '2', value: '2'},
         {text: '3', value: '3'},
@@ -32,6 +31,12 @@ export default class Foundation5 implements IPreset {
      * Gets style url
      */
     public style = (): string => 'foundation5.css';
+
+    /**
+     * Gets default column
+     * @return {string}
+     */
+    public default = (): string => '12';
 
     /**
      * Returns regxp for column class

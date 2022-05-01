@@ -1,4 +1,4 @@
-import { Editor, util } from 'tinymce';
+import { Editor, I18n, Ui } from 'tinymce';
 import InsertColumn from '../dialog/InsertColumn';
 import IPreset from '../presets/IPreset';
 import BaseElement from './BaseElement';
@@ -17,7 +17,7 @@ export default class Column extends BaseElement {
 
     private insertColumnDialog: InsertColumn;
 
-    constructor(protected settings: Settings, protected preset: IPreset, protected editor: Editor, protected i18n: util.i18n) {
+    constructor(protected settings: Settings, protected preset: IPreset, protected editor: Editor, protected i18n: I18n) {
         super(settings, editor, i18n);
 
         this.insertColumnDialog = new InsertColumn(this.preset);
@@ -30,77 +30,63 @@ export default class Column extends BaseElement {
         this.properties = this.properties.bind(this);
         this.onInsertSubmit = this.onInsertSubmit.bind(this);
 
-        // Commands
-        editor.addCommand(Column.CMD_INSERT_AFTER_COLUMN, this.insertAfter);
-        editor.addCommand(Column.CMD_INSERT_BEFORE_COLUMN, this.insertBefore);
-        editor.addCommand(Column.CMD_DELETE_COLUMN, this.delete);
-        editor.addCommand(Column.CMD_PROPERTIES_COLUMN, this.properties);
-
         // Buttons
-        editor.addButton(Column.BTN_COLUMN_PROPERTIES, {
-            icon: 'tablecellprops',
-            cmd: Column.CMD_PROPERTIES_COLUMN,
-            context: 'properties',
+        editor.ui.registry.addButton(Column.BTN_COLUMN_PROPERTIES, {
+            icon: 'table-cell-properties',
             tooltip: i18n.translate('grid.column.properties'),
+            onAction: this.properties
         });
-        editor.addButton(Column.BTN_COLUMN_INSERT_AFTER, {
-            icon: 'tableinsertcolafter',
-            cmd: Column.CMD_INSERT_AFTER_COLUMN,
-            context: 'insert',
+        editor.ui.registry.addButton(Column.BTN_COLUMN_INSERT_AFTER, {
+            icon: 'table-insert-column-after',
             tooltip: i18n.translate('grid.column.insert_after'),
+            onAction: this.insertAfter
         });
-        editor.addButton(Column.BTN_COLUMN_INSERT_BEFORE, {
-            icon: 'tableinsertcolbefore',
-            cmd: Column.CMD_INSERT_BEFORE_COLUMN,
-            context: 'insert',
+        editor.ui.registry.addButton(Column.BTN_COLUMN_INSERT_BEFORE, {
+            icon: 'table-insert-column-before',
             tooltip: i18n.translate('grid.column.insert_before'),
+            onAction: this.insertBefore
         });
-        editor.addButton(Column.BTN_COLUMN_DELETE, {
-            icon: 'tabledeletecol',
-            cmd: Column.CMD_DELETE_COLUMN,
-            context: 'delete',
+        editor.ui.registry.addButton(Column.BTN_COLUMN_DELETE, {
+            icon: 'table-delete-column',
             tooltip: i18n.translate('grid.column.remove'),
+            onAction: this.delete
         });
     }
 
     /**
      * Inserts Column element after selection
      *
-     * @param   {boolean}  ui
-     * @param   {any}      value
+     * @param   {Ui.Toolbar.ToolbarButtonInstanceApi}  api
      *
-     * @return  {boolean}
+     * @return  {void}
      */
-    private insertAfter(ui: boolean, value: any): boolean {
-        return this.insert(ui, 'after');
+    private insertAfter(api: Ui.Toolbar.ToolbarButtonInstanceApi): void {
+        this.insert(api, 'after');
     }
 
     /**
      * Inserts Column element after selection
      *
-     * @param   {boolean}  ui
-     * @param   {any}      value
+     * @param   {Ui.Toolbar.ToolbarButtonInstanceApi}  api
      *
-     * @return  {boolean}
+     * @return  {void}
      */
-    private insertBefore(ui: boolean, value: any): boolean {
-        return this.insert(ui, 'before');
+    private insertBefore(api: Ui.Toolbar.ToolbarButtonInstanceApi): void {
+        this.insert(api, 'before');
     }
 
     /**
      * Opens "insert Column" dialog
      *
-     * @param   {boolean}  ui
-     * @param   {any}      value
+     * @param   {Ui.Toolbar.ToolbarButtonInstanceApi}  api
+     * @param   {Ui.Toolbar.string}  value
      *
-     * @return  {boolean}
+     * @return  {void}
      */
-    private insert(ui: boolean, value: any): boolean {
+    private insert(api: Ui.Toolbar.ToolbarButtonInstanceApi, value: 'after' | 'before'): boolean {
         const row: HTMLElement = <HTMLElement> this.getElementRow();
         if (row) {
-            this.editor.windowManager.open(this.insertColumnDialog.render((data) => {
-                this.onInsertSubmit(data, value);
-            }, {}), {});
+            this.editor.windowManager.open(this.insertColumnDialog.render((data) => this.onInsertSubmit(data, value)));
             return true;
         }
         return false;
@@ -109,34 +95,30 @@ export default class Column extends BaseElement {
     /**
      * Deletes selected Column element
      *
-     * @param   {boolean}  ui
-     * @param   {object}   value
+     * @param   {Ui.Toolbar.ToolbarButtonInstanceApi}  api
      *
-     * @return  {boolean}
+     * @return  {void}
      */
-    private delete(ui: boolean, value: object): boolean {
+    private delete(api: Ui.Toolbar.ToolbarButtonInstanceApi): void {
         const column: HTMLElement = <HTMLElement> this.getElementColumn();
         if (column) {
             const row = column.parentNode;
-            if (row.querySelectorAll('.grid-col').length === 1) {
-                return false;
-            } else {
-                this.editor.dom.remove(column);
+            this.editor.dom.remove(column);
+            if (row.querySelectorAll('.grid-col').length === 0) {
+                this.editor.dom.remove(row);
             }
-            return true;
         }
-        return false;
     }
 
     /**
      * Deletes selected Column element
      *
-     * @param   {object}  data
+     * @param   {any}  data
      * @param   {string}  value
      *
-     * @return  {boolean}
+     * @return  {void}
      */
-    private onInsertSubmit({data}, value: string) {
+    private onInsertSubmit(data: any, value: 'after' | 'before'): void {
         const column: HTMLElement = <HTMLElement> this.getElementColumn();
         if (column) {
             if (value === 'after') {
@@ -153,43 +135,42 @@ export default class Column extends BaseElement {
     /**
      * Opens dialog with properties of selected column element
      *
-     * @param   {object}  data
-     * @param   {string}  value
+     * @param   {Ui.Toolbar.ToolbarButtonInstanceApi}  api
      *
-     * @return  {boolean}
+     * @return  {void}
      */
-    private properties(ui: boolean, value: any): boolean {
+    private properties(api: Ui.Toolbar.ToolbarButtonInstanceApi): void {
         const column: HTMLElement = <HTMLElement> this.getElementColumn();
-        if (column) {
-            const selected = this.insertColumnDialog.getSelected(column.classList.value);
-            this.editor.windowManager.open(this.insertColumnDialog.render((event) => {
-                // Remove old
-                const removeClass = [];
-                column.classList.forEach((className) => {
-                    if (this.preset.isColumn(className)) {
-                        removeClass.push(className);
-                    }
-                });
-                removeClass.forEach((className) => {
-                    column.classList.remove(className);
-                });
-                // Save new
-                for (const key in event.data) {
-                    if (event.data.hasOwnProperty(key)) {
-                        const element = event.data[key];
-                        const breakpoint = this.preset.breakpoints.find((br) => br.value === key);
-                        if (!element) {
-                            continue;
-                        }
-                        column.classList.add(this.preset.columnClass(breakpoint.preffix, element));
-                    }
-                }
-            }, {
-                class: column.classList.value,
-                selected
-            }), {});
-            return true;
+        if (!column) {
+            return;
         }
-        return false;
+
+        const selected = this.insertColumnDialog.getSelected(column.classList.value);
+        this.editor.windowManager.open(this.insertColumnDialog.render((data) => {
+            // Remove old
+            const removeClass = [];
+            column.classList.forEach((className) => {
+                if (this.preset.isColumn(className)) {
+                    removeClass.push(className);
+                }
+            });
+            removeClass.forEach((className) => {
+                column.classList.remove(className);
+            });
+            // Save new
+            for (const key in data) {
+                if (data.hasOwnProperty(key)) {
+                    const element = data[key];
+                    const breakpoint = this.preset.breakpoints.find((br) => br.value === key);
+                    if (!element) {
+                        continue;
+                    }
+                    column.classList.add(this.preset.columnClass(breakpoint.preffix, element));
+                }
+            }
+        }, {
+            class: column.classList.value,
+            selected
+        }), {});
     }
 }

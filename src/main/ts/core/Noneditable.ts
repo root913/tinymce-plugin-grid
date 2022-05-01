@@ -1,5 +1,4 @@
-import { KeyboardEvent } from '@ephox/dom-globals';
-import { Editor, util } from 'tinymce';
+import { Editor, EditorEvent, Events, I18n } from 'tinymce';
 import Settings from './Settings';
 
 export default class Noneditable {
@@ -9,20 +8,19 @@ export default class Noneditable {
         'grid-col',
     ];
 
-    constructor(private settings: Settings, private editor: Editor, private i18n: util.i18n) {
+    constructor(private settings: Settings, private editor: Editor, private i18n: I18n) {
         this.onKeyDown = this.onKeyDown.bind(this);
         this.onBeforeExecCommand = this.onBeforeExecCommand.bind(this);
         editor.on('keydown', this.onKeyDown);
         editor.on('BeforeExecCommand', this.onBeforeExecCommand);
     }
 
-    private onKeyDown(event: KeyboardEvent) {
-        const keycode = event.charCode || event.keyCode;
+    private onKeyDown(event: EditorEvent<globalThis.KeyboardEvent>) {
         // Backspace
         const selection = this.editor.selection.getNode();
         const selectionParent = selection.parentNode as Element;
-        const rng = this.editor.selection.getRng(false);
-        if (keycode === 8) {
+        const rng = this.editor.selection.getRng();
+        if (event.key === 'Backspace') {
             if (rng.startOffset > 0) {
                 return;
             }
@@ -50,7 +48,7 @@ export default class Noneditable {
             }
         }
         // Delete
-        if (keycode === 46) {
+        if (event.key === 'Delete') {
             if (selectionParent && selectionParent.childElementCount === 1) {
                 if (this.classNames.some((className) => selectionParent.classList.contains(className))) {
                     event.preventDefault();
@@ -67,7 +65,7 @@ export default class Noneditable {
         }
     }
 
-    private onBeforeExecCommand(event) {
+    private onBeforeExecCommand(event: EditorEvent<Events.ExecCommandEvent>) {
         if (event.command === 'InsertOrderedList' || event.command === 'InsertUnorderedList' || event.command === 'InsertDefinitionList') {
             const selection = this.editor.selection.getNode();
             this.classNames.forEach((name) => {

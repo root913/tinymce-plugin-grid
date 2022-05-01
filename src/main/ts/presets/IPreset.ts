@@ -22,6 +22,11 @@ interface IPreset {
      */
     style(): string;
     /**
+     * Gets default column
+     * @return {string}
+     */
+    default(): string;
+    /**
      * Returns regxp for column class
      *
      * @param {string} columnPreffix
