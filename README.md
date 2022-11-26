@@ -7,6 +7,7 @@ This plugin allows you to use grid system in editor.
 Supported css frameworks:
 * Bootstrap 3
 * Bootstrap 4
+* Bootstrap 5
 * Foundation CSS 5
 
 ## Demo

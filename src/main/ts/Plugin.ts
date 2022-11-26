@@ -9,6 +9,7 @@ import Settings from './core/Settings';
 // Presets
 import Bootstrap3 from './presets/Bootstrap3';
 import Bootstrap4 from './presets/Bootstrap4';
+import Bootstrap5 from './presets/Bootstrap5';
 import Foundation5 from './presets/Foundation5';
 
 declare const tinymce: any;
@@ -16,6 +17,7 @@ declare const tinymce: any;
 const presets = {
     Bootstrap3,
     Bootstrap4,
+    Bootstrap5,
     Foundation5,
 };
 
