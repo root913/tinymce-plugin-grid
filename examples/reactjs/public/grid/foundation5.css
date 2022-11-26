@@ -1,0 +1,292 @@
+.grid-col {
+    border: 1px dotted black;
+    box-sizing: border-box;
+    min-height: 25px !important;
+    padding: 5px;
+    background-color: aliceblue;
+}
+
+.grid-col.focused {
+    background-color: #ffffc9;
+}
+
+.grid-col p {
+    display: block;
+    margin-block-start: 0.2em;
+    margin-block-end: 0.2em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.grid-row {
+    border-top: 1px dotted black;
+    border-left: 1px dotted black;
+    border-right: 1px dotted black;
+    min-height: 25px;
+    padding: 10px;
+}
+
+.grid-row:last-child {
+    border-bottom: 1px dotted black;
+}
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.row {
+    margin: 0 auto;
+    max-width: 55.55556rem;
+    width: 100%;
+}
+
+.row:before, .row:after {
+    content: " ";
+    display: table;
+}
+
+.row:after {
+    clear: both;
+}
+
+.row.collapse > .column,
+.row.collapse > .columns {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.row.collapse .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.row .row {
+    margin: 0 -0.83333rem;
+    max-width: none;
+    width: auto;
+}
+
+.row .row:before, .row .row:after {
+    content: " ";
+    display: table;
+}
+
+.row .row:after {
+    clear: both;
+}
+
+.row .row.collapse {
+    margin: 0;
+    max-width: none;
+    width: auto;
+}
+
+.row .row.collapse:before, .row .row.collapse:after {
+    content: " ";
+    display: table;
+}
+
+.row .row.collapse:after {
+    clear: both;
+}
+
+.column,
+.columns {
+    padding-left: 0.83333rem;
+    padding-right: 0.83333rem;
+    width: 100%;
+    float: left;
+}
+
+.column + .column:last-child,
+.columns + .column:last-child, .column +
+.columns:last-child,
+.columns +
+.columns:last-child {
+    float: right;
+}
+
+.column + .column.end,
+.columns + .column.end, .column +
+.columns.end,
+.columns +
+.columns.end {
+    float: left;
+}
+
+@media only screen {
+    .column,
+    .columns {
+        position: relative;
+        padding-left: 0.83333rem;
+        padding-right: 0.83333rem;
+        float: left;
+    }
+
+    .small-1 {
+        width: 8.33333%;
+    }
+
+    .small-2 {
+        width: 16.66667%;
+    }
+
+    .small-3 {
+        width: 25%;
+    }
+
+    .small-4 {
+        width: 33.33333%;
+    }
+
+    .small-5 {
+        width: 41.66667%;
+    }
+
+    .small-6 {
+        width: 50%;
+    }
+
+    .small-7 {
+        width: 58.33333%;
+    }
+
+    .small-8 {
+        width: 66.66667%;
+    }
+
+    .small-9 {
+        width: 75%;
+    }
+
+    .small-10 {
+        width: 83.33333%;
+    }
+
+    .small-11 {
+        width: 91.66667%;
+    }
+
+    .small-12 {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 35.61111em) {
+    .column,
+    .columns {
+        position: relative;
+        padding-left: 0.83333rem;
+        padding-right: 0.83333rem;
+        float: left;
+    }
+
+    .medium-1 {
+        width: 8.33333%;
+    }
+
+    .medium-2 {
+        width: 16.66667%;
+    }
+
+    .medium-3 {
+        width: 25%;
+    }
+
+    .medium-4 {
+        width: 33.33333%;
+    }
+
+    .medium-5 {
+        width: 41.66667%;
+    }
+
+    .medium-6 {
+        width: 50%;
+    }
+
+    .medium-7 {
+        width: 58.33333%;
+    }
+
+    .medium-8 {
+        width: 66.66667%;
+    }
+
+    .medium-9 {
+        width: 75%;
+    }
+
+    .medium-10 {
+        width: 83.33333%;
+    }
+
+    .medium-11 {
+        width: 91.66667%;
+    }
+
+    .medium-12 {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 56.94444em) {
+    .column,
+    .columns {
+        position: relative;
+        padding-left: 0.83333rem;
+        padding-right: 0.83333rem;
+        float: left;
+    }
+
+    .large-1 {
+        width: 8.33333%;
+    }
+
+    .large-2 {
+        width: 16.66667%;
+    }
+
+    .large-3 {
+        width: 25%;
+    }
+
+    .large-4 {
+        width: 33.33333%;
+    }
+
+    .large-5 {
+        width: 41.66667%;
+    }
+
+    .large-6 {
+        width: 50%;
+    }
+
+    .large-7 {
+        width: 58.33333%;
+    }
+
+    .large-8 {
+        width: 66.66667%;
+    }
+
+    .large-9 {
+        width: 75%;
+    }
+
+    .large-10 {
+        width: 83.33333%;
+    }
+
+    .large-11 {
+        width: 91.66667%;
+    }
+
+    .large-12 {
+        width: 100%;
+    }
+}

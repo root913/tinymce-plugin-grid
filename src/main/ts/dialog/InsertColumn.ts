@@ -2,7 +2,7 @@ import { Ui } from 'tinymce';
 import IPreset, { Breakpoint, Column } from '../presets/IPreset';
 
 interface Args {
-    class?: string, 
+    class?: string,
     selected?: {}
 }
 
@@ -16,7 +16,7 @@ export default class InsertColumn {
     constructor (private preset: IPreset) {}
 
     /**
-     * @param {OnSubmit} onSubmit 
+     * @param {OnSubmit} onSubmit
      * @param {Args} args
      * @return {Ui.Dialog.DialogSpec<any>}
      */
@@ -33,7 +33,7 @@ export default class InsertColumn {
     }
 
     /**
-     * @param {string} className 
+     * @param {string} className
      */
     public getSelected(className: string) {
         const result = {};
@@ -98,7 +98,7 @@ export default class InsertColumn {
      * @return {Ui.Dialog.ListBoxSpec}
      */
     private breadpoint(breadpoint: Breakpoint): Ui.Dialog.ListBoxSpec {
-        let columnItems = this.preset.columns.map((column) => this.columnOption(column));
+        const columnItems = this.preset.columns.map((column) => this.columnOption(column));
         columnItems.unshift({text: 'Select column', value: ''});
 
         return {
@@ -122,7 +122,7 @@ export default class InsertColumn {
 
     /**
      * @param {Ui.Dialog.DialogInstanceApi<any>} api
-     * @param onSubmit 
+     * @param onSubmit
      */
     private onSubmit(api: Ui.Dialog.DialogInstanceApi<any>, onSubmit: { (data: any): void; (data: any): void; }): void {
         onSubmit(api.getData());
@@ -130,10 +130,10 @@ export default class InsertColumn {
     }
 
     /**
-     * 
+     *
      * @param {Ui.Dialog.DialogInstanceApi<any>} api
-     * @param {Ui.Dialog.DialogChangeDetails<any>} details 
-     * @returns 
+     * @param {Ui.Dialog.DialogChangeDetails<any>} details
+     * @returns
      */
     private onChange(api: Ui.Dialog.DialogInstanceApi<any>, details: Ui.Dialog.DialogChangeDetails<any>): void {
         const data = api.getData();

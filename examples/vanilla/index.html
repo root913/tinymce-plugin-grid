@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="tinymce/tinymce.min.js"></script>
+
+    <script>
+      tinymce.init({
+        selector: '#mytextarea',
+        plugins: [
+            'grid'
+        ],
+        toolbar: 'grid_insert',
+        height : '250',
+        grid_preset: 'Bootstrap3'
+      });
+    </script>
+
+  </head>
+
+  <body>
+  <h1>TinyMCE Quick Start Guide</h1>
+    <form method="post">
+      <textarea id="mytextarea">Hello, World!</textarea>
+    </form>
+  </body>
+</html>

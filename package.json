@@ -5,6 +5,7 @@
     "scripts": {
         "prepublishOnly": "npm run lint && npm run build",
         "lint": "tslint src/**/*.ts",
+        "lint:fix": "tslint src/**/*.ts --fix",
         "test": "bedrock-auto -b phantomjs -d src/test/ts/ --singleTimeout=30000",
         "test-manual": "bedrock -d src/test/ts/",
         "build": "webpack --mode production",
@@ -50,5 +51,6 @@
     "main": "./lib/main/ts/api/Main.js",
     "module": "./lib/main/ts/api/Main.js",
     "types": "./lib/main/ts/api/Main.d.ts",
-    "license": "Apache-2.0"
+    "license": "Apache-2.0",
+    "dependencies": {}
 }

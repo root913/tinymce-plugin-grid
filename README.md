@@ -17,7 +17,9 @@ Supported css frameworks:
 
 Just copy the contents of the  "dist" directory to plugins directory of your tinyMCE instalation.
 
-## Use
+See examples directories for more info.
+
+## Useage
 
 ````
 tinymce.init({
