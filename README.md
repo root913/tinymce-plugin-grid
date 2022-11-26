@@ -1,6 +1,6 @@
 # Grid TinyMCE Plugin [![npm][npm-image]][npm-url]
-[npm-image]: https://img.shields.io/npm/v/tinymce-plugin-codeblock.svg
-[npm-url]: https://npmjs.org/package/tinymce-plugin-codeblock
+[npm-image]: https://img.shields.io/npm/v/tinymce-plugin-grid.svg
+[npm-url]: https://www.npmjs.com/package/tinymce-plugin-grid
 
 This plugin allows you to use grid system in editor.
 
